@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ink.bzm.users.dao.UserDAO">
+    <!--查询所有-->
+    <select id="findAll" resultType="ink.bzm.users.pojo.User">
+        select id,name,bir,sex,address from t_users
+    </select>
+
+    <!--保存用户-->
+    <insert id="save" parameterType="ink.bzm.users.pojo.User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_users values(#{id},#{name},#{bir} ,#{sex},#{address})
+    </insert>
+
+    <!--删除用户根据id-->
+    <delete id="delete" parameterType="String">
+        delete from t_users where id=#{id}
+    </delete>
+
+    <!--修改用户信息-->
+    <update id="update">
+        update t_users set name =#{name},bir=#{bir},sex=#{sex},address=#{address}
+        where id=#{id};
+    </update>
+</mapper>
